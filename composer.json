@@ -1,0 +1,17 @@
+{
+  "name": "yireo/shopware6-example-dealers-administration",
+  "description": "Shopware 6 example dealers - Administration plugin",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Yireo\\ExampleDealersAdministration\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Yireo\\ExampleDealersAdministration\\YireoExampleDealersAdministration",
+    "label": {
+      "en-GB": "Shopware 6 example dealers - Administration plugin"
+    }
+  }
+}
