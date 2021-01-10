@@ -1,0 +1,13 @@
+{
+  "dealers": {
+    "general": {
+      "mainMenuItemGeneral": "Example Dealers",
+      "descriptionTextModule": "Management of example dealers"
+    },
+    "listing": {
+      "name": "Name",
+      "description": "Description",
+      "address": "Address"
+    }
+  }
+}

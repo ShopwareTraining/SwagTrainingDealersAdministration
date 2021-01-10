@@ -1,0 +1,87 @@
+{% block dealer_listing %}
+    <sw-page class="dealer-listing" :showSmartBar="false">
+        {% block dealer_listing_content %}
+            <sw-card-view slot="content" class="dealer-listing__content">
+                <template>
+                    <sw-card>
+                        {% block dealer_listing_content_grid %}
+                            <template slot="grid">
+                                <sw-entity-listing ref="yireoExampleDealersAdministration"
+                                                   class="dealer-listing-grid"
+                                                   v-if="dealers"
+                                                   :repository="dealerRepository"
+                                                   :items="dealers"
+                                                   :columns="getGridColumns()"
+                                                   :allowColumnEdit="false"
+                                                   :showSelection="false"
+                                                   :allowInlineEdit="false"
+                                                   :allowEdit="acl.can('rule.editor')"
+                                                   :allowDelete="acl.can('rule.deleter')"
+                                                   :fullPage="false"
+                                                   :isLoading="isLoading"
+                                                   detailRoute="dealer.detail"
+                                >
+                                    {% block dealer_listing_content_grid_created_at %}
+                                        <template slot="column-orderDateTime" slot-scope="{ item }">
+                                            {{ item.orderDateTime | date({
+                                                hour: '2-digit',
+                                                minute: '2-digit',
+                                                year: undefined,
+                                                month: undefined,
+                                                day: undefined
+                                            }) }}
+                                        </template>
+                                    {% endblock %}
+
+                                    {% block dealer_listing_content_grid_first_name %}
+                                        <template slot="column-orderCustomer.firstName" slot-scope="{ item }">
+                                            <router-link :to="{ name: 'sw.order.detail', params: { id: item.id } }"
+                                                         class="sw-data-grid__cell-value">
+                                                {{ item.orderCustomer.firstName }} {{ item.orderCustomer.lastName }}
+                                            </router-link>
+                                        </template>
+                                    {% endblock %}
+
+                                    {% block dealer_listing_content_grid_short_name %}
+                                        <template slot="column-amountTotal" slot-scope="{ item }">
+                                            {{ item.amountTotal | currency(item.currency.shortName) }}
+                                        </template>
+                                    {% endblock %}
+
+                                    {% block dealer_listing_content_grid_state %}
+                                        <template slot="column-stateMachineState.name" slot-scope="{ item }">
+                                            <sw-label :variant="getVariantFromOrderState(item)" appearance="pill">
+                                                {{ item.stateMachineState.translated.name }}
+                                            </sw-label>
+                                        </template>
+                                    {% endblock %}
+
+                                    {% block dealer_listing_content_grid_actions %}
+                                        <template slot="actions" slot-scope="{ item }">
+                                            {% block dealer_listing_content_grid_actions_view %}
+                                                <sw-context-menu-item class="sw-order-list__order-view-action"
+                                                                      :routerLink="{ name: 'sw.order.detail', params: { id: item.id } }">
+                                                    {{ $tc('sw-order.list.contextMenuView') }}
+                                                </sw-context-menu-item>
+                                            {% endblock %}
+                                        </template>
+                                    {% endblock %}
+
+                                    <template #pagination>
+                                        <sw-pagination
+                                                :page="page"
+                                                :limit="limit"
+                                                :total="total"
+                                                :steps="[5, 10, 25, 50]"
+                                                @page-change="onPageChange">
+                                        </sw-pagination>
+                                    </template>
+                                </sw-entity-listing>
+                            </template>
+                        {% endblock %}
+                    </sw-card>
+                </template>
+            </sw-card-view>
+        {% endblock %}
+    </sw-page>
+{% endblock %}
