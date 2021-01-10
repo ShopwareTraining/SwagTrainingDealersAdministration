@@ -1,0 +1,53 @@
+{% block dealer_form %}
+    <sw-page class="dealer-form">
+        <template slot="smart-bar-actions">
+            <sw-button :disabled="isLoading" @click="onCancel">
+                {{ $tc('dealers.form.buttonCancel') }}
+            </sw-button>
+
+            <sw-button-process
+                    class="dealers-form__save-action"
+                    :isLoading="isLoading"
+                    v-model="isSaveSuccessful"
+                    :disabled="isLoading || !acl.can('dealers.editor')"
+                    variant="primary"
+                    @process-finish="saveFinish"
+                    @click.prevent="onSave">
+                {{ $tc('dealers.form.buttonSave') }}
+            </sw-button-process>
+        </template>
+
+        <sw-card-view slot="content">
+            <sw-card>
+                <h2>Dealer edit</h2>
+
+                <sw-field
+                        type="text"
+                        required
+                        :disabled="!acl.can('dealers.editor')"
+                        :label="$tc('dealers.form.name')"
+                        :placeholder="placeholder(dealer, 'name', $tc('dealers.form.name'))"
+                        v-model="dealer.name">
+                </sw-field>
+
+                <sw-field
+                        type="text"
+                        required
+                        :disabled="!acl.can('dealers.editor')"
+                        :label="$tc('dealers.form.description')"
+                        :placeholder="placeholder(dealer, 'description', $tc('dealers.form.description'))"
+                        v-model="dealer.description">
+                </sw-field>
+
+                <sw-field
+                        type="text"
+                        required
+                        :disabled="!acl.can('dealers.editor')"
+                        :label="$tc('dealers.form.address')"
+                        :placeholder="placeholder(dealer, 'address', $tc('dealers.form.address'))"
+                        v-model="dealer.address">
+                </sw-field>
+            </sw-card>
+        </sw-card-view>
+    </sw-page>
+{% endblock %}

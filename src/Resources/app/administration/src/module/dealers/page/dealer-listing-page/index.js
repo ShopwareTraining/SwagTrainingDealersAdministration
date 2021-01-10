@@ -9,12 +9,12 @@ Component.register('dealer-listing-page', {
 
     inject: [
         'repositoryFactory',
-        'stateStyleDataProviderService',
         'acl'
     ],
 
     mixins: [
-        Mixin.getByName('listing')
+        Mixin.getByName('listing'),
+        Mixin.getByName('notification')
     ],
 
     metaInfo() {
@@ -25,11 +25,8 @@ Component.register('dealer-listing-page', {
 
     data() {
         return {
-            dealers: [],
-            total: NaN,
-            page: 0,
-            isLoading: false,
-            sortBy: 'name'
+            dealers: null,
+            isLoading: false
         };
     },
 
@@ -39,13 +36,13 @@ Component.register('dealer-listing-page', {
         }
     },
 
-    created() {
+    createdComponent() {
         this.getList();
     },
 
     methods: {
         getCriteria() {
-            const criteria = new Criteria();
+            const criteria = new Criteria(this.page, this.limit);
 
             if (this.term) {
                 criteria.setTerm(this.term);
@@ -60,42 +57,35 @@ Component.register('dealer-listing-page', {
 
         getList() {
             this.isLoading = true;
-            const criteria = this.getCriteria();
-            this.dealerRepository.search(criteria, Shopware.Context.api).then((items) => {
-                this.total = items.total;
-                this.dealers = items;
-                return items;
+            this.dealerRepository.search(this.getCriteria(), Shopware.Context.api).then(result => {
+                this.dealers = result;
+                this.total = result.total;
+                return result;
             }).finally(() => {
                 this.isLoading = false;
             });
         },
 
-        onInlineEditSave(order) {
-            order.save();
+        onInlineEditSave(dealer) {
+            dealer.save();
         },
 
         getGridColumns() {
             return [{
                 property: 'name',
                 label: 'dealers.listing.name',
-                routerLink: 'dealers.form',
+                routerLink: 'yireo.example.dealers.form',
                 allowResize: true,
                 primary: true
             }, {
                 property: 'description',
                 label: 'dealers.listing.description',
-                routerLink: 'dealers.form',
                 allowResize: true
             }, {
                 property: 'address',
                 label: 'dealers.listing.address',
                 allowResize: true
-            }, {
-                property: 'updatedAt',
-                label: 'sw-settings-rule.list.columnDateCreated',
-                align: 'right',
-                allowResize: true
-            }];
+            }]
         }
     }
 });

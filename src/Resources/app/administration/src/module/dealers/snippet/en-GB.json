@@ -7,6 +7,14 @@
     "listing": {
       "name": "Name",
       "description": "Description",
+      "address": "Address",
+      "contextMenuEdit": "Edit"
+    },
+    "form": {
+      "buttonSave": "Save",
+      "buttonCancel": "Cancel",
+      "name": "Name",
+      "description": "Description",
       "address": "Address"
     }
   }

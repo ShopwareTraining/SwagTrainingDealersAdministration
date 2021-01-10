@@ -1,6 +1,5 @@
 import './page/dealer-listing-page';
-import './component/dealer-listing';
-import enGB from './snippet/en-GB.json';
+import './page/dealer-form-page';
 
 const { Module } = Shopware;
 
@@ -15,16 +14,18 @@ Module.register('yireo-example-dealers', {
     icon: 'default-device-dashboard',
     favicon: 'icon-module-dashboard.png',
 
-    snippets: {
-        'en-GB': enGB
-    },
-
     routes: {
         index: {
             components: {
                 default: 'dealer-listing-page'
             },
             path: 'index'
+        },
+        form: {
+            components: {
+                default: 'dealer-form-page'
+            },
+            path: 'form'
         }
     },
 
