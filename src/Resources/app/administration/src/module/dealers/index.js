@@ -35,6 +35,7 @@ Module.register('swag-training-dealers', {
         color: '#FFCC00',
         icon: 'default-device-dashboard',
         path: 'swag.training.dealers.index',
-        position: 1
+        position: 1,
+        parent: 'sw-catalogue'
     }]
 });
