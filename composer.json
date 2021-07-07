@@ -1,15 +1,15 @@
 {
-  "name": "yireo/shopware6-example-dealers-administration",
+  "name": "shopware-training/dealers-administration",
   "description": "Shopware 6 example dealers - Administration plugin",
   "type": "shopware-platform-plugin",
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "Yireo\\ExampleDealersAdministration\\": "src/"
+      "SwagTraining\\DealersAdministration\\": "src/"
     }
   },
   "extra": {
-    "shopware-plugin-class": "Yireo\\ExampleDealersAdministration\\YireoExampleDealersAdministration",
+    "shopware-plugin-class": "SwagTraining\\DealersAdministration\\SwagTrainingDealersAdministration",
     "label": {
       "en-GB": "Shopware 6 example dealers - Administration plugin"
     }

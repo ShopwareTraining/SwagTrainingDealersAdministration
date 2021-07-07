@@ -3,7 +3,7 @@ import './page/dealer-form-page';
 
 const { Module } = Shopware;
 
-Module.register('yireo-example-dealers', {
+Module.register('swag-training-dealers', {
     type: 'plugin',
     name: 'dealers',
     title: 'dealers.general.mainMenuItemGeneral',
@@ -34,7 +34,7 @@ Module.register('yireo-example-dealers', {
         label: 'dealers.general.mainMenuItemGeneral',
         color: '#FFCC00',
         icon: 'default-device-dashboard',
-        path: 'yireo.example.dealers.index',
+        path: 'swag.training.dealers.index',
         position: 1
     }]
 });

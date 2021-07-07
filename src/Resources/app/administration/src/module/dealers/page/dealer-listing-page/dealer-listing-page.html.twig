@@ -12,12 +12,12 @@
                         :columns="getGridColumns()"
                         :fullPage="false"
                         :isLoading="isLoading"
-                        detailRoute="yireo.example.dealers.form"
+                        detailRoute="swag.training.dealers.form"
                 >
                     <template #actions="{ item }">
 
                         <sw-context-menu-item class="dealer-listing__dealer-edit-action"
-                                              :routerLink="{ name: 'yireo.example.dealers.form', params: { id: item.id } }">
+                                              :routerLink="{ name: 'swag.training.dealers.form', params: { id: item.id } }">
                             {{ $tc('dealers.listing.contextMenuEdit') }}
                         </sw-context-menu-item>
                     </template>

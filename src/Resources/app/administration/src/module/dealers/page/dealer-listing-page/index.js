@@ -74,7 +74,7 @@ Component.register('dealer-listing-page', {
             return [{
                 property: 'name',
                 label: 'dealers.listing.name',
-                routerLink: 'yireo.example.dealers.form',
+                routerLink: 'swag.training.dealers.form',
                 allowResize: true,
                 primary: true
             }, {
