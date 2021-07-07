@@ -1,5 +1,5 @@
 {
-  "name": "shopware-training/dealers-administration",
+  "name": "swag-training/dealers-administration",
   "description": "Shopware 6 example dealers - Administration plugin",
   "type": "shopware-platform-plugin",
   "license": "MIT",
